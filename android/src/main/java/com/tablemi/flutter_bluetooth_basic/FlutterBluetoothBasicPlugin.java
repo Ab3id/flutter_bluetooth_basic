@@ -57,6 +57,12 @@ public class FlutterBluetoothBasicPlugin implements FlutterPlugin, MethodCallHan
 
   private Result pendingResult;
 
+  @Override
+  public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
+    channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "flutter_bluetooth_basic");
+    channel.setMethodCallHandler(this);
+  }
+
   // plugin should still contain the static registerWith() method to remain compatible with apps
   // that don’t use the v2 Android embedding.
   // public static void registerWith(Registrar registrar) {
